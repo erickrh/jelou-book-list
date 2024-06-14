@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-// import image from './assets/33.jpg';
-// import Card from './components/Card';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { fetchBooksData } from './slices/dataSlice';
 import BookList from './components/BooksList';
 import FavoriteBooks from './components/FavoriteBooks';
+import logo from './assets/logo2.png';
 
 function App() {
   const dispatch = useDispatch();
   const books = useSelector((state) => state.data.books, shallowEqual);
   const favorite = useSelector((state) => state.data.favorite);
+  const loading = useSelector((state) => state.ui.loading);
 
   useEffect(() => {
     dispatch(fetchBooksData());
@@ -17,24 +17,20 @@ function App() {
 
   return (
     <>
-      <header className='bg-slate-50'>
-        <h1 className='text-3xl font-bold'>Welcome to Jelou Book</h1>
-        <p className='text-gray-500'>Your personalized book list</p>
+      <header className='bg-primary flex flex-col items-center shadow-md'>
+        <img className='h-20 w-20 rounded-lg' src={logo} alt='logo' />
+        <h1 className='text-secondary text-5xl font-medium'>Jelou</h1>
+        <h2 className='text-secondary'>Book List</h2>
       </header>
 
       <main className='mt-12'>
-        <article className='flex gap-x-2'>
-          <h2 className='text-2xl font-bold'>Book List</h2>
-          <h2 className='text-2xl font-bold text-gray-400'>Recommendation</h2>
-        </article>
+        <section>
+          <BookList books={books} loading={loading} />
+        </section>
 
-        <article>
-          <BookList books={books} />
-        </article>
-
-        <article>
-          <FavoriteBooks favorite={favorite} />
-        </article>
+        <section>
+          <FavoriteBooks favorite={favorite} loading={loading} />
+        </section>
       </main>
     </>
   );

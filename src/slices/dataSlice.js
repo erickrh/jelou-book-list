@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchData } from '../api';
+import { setLoading } from './uiSlice';
 
 const initialState = {
   books: [],
@@ -9,6 +10,7 @@ const initialState = {
 export const fetchBooksData = createAsyncThunk('data/fetchBooksData', async (_, { dispatch }) => {
   const data = await fetchData();
   dispatch(setBooks(data));
+  dispatch(setLoading(false));
 });
 
 const dataSlice = createSlice({

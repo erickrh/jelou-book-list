@@ -1,18 +1,28 @@
 import Card from './Card';
+import Loading from './Loading';
 
-export default function BookList({ books }) {
+export default function BookList({ books, loading }) {
   return (
-    <div className='mt-5 grid grid-cols-1 gap-y-5 sm:grid-cols-2 md:grid-cols-3'>
-      {books.map(({ book }) => (
-        <Card
-          key={book.title}
-          cover={book.cover}
-          title={book.title}
-          synopsis={book.synopsis}
-          genre={book.genre}
-          author={book.author.name}
-        />
-      ))}
-    </div>
+    <>
+      <h3 className='text-2xl font-bold text-gray-600'>
+        Book List <span className='text-secondary text-2xl font-bold'>Recommendation</span>
+      </h3>
+
+      <div className='mt-5 grid grid-cols-1 gap-y-5 sm:grid-cols-2 md:grid-cols-3'>
+        {books.map(({ book }) => (
+          <Card
+            key={book.title}
+            cover={book.cover}
+            title={book.title}
+            synopsis={book.synopsis}
+            genre={book.genre}
+            author={book.author.name}
+            isFavorite={false}
+          />
+        ))}
+      </div>
+
+      {loading && <Loading />}
+    </>
   );
 }
