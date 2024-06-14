@@ -3,6 +3,7 @@ import { fetchData } from '../api';
 
 const initialState = {
   books: [],
+  favorite: [],
 };
 
 export const fetchBooksData = createAsyncThunk('data/fetchBooksData', async (_, { dispatch }) => {
@@ -17,9 +18,12 @@ const dataSlice = createSlice({
     setBooks: (state, action) => {
       state.books = action.payload;
     },
+    setFavorite: (state, action) => {
+      state.favorite = action.payload;
+    },
   },
 });
 
-export const { setBooks } = dataSlice.actions;
+export const { setBooks, setFavorite } = dataSlice.actions;
 
 export default dataSlice.reducer;

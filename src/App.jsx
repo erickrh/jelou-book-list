@@ -1,18 +1,20 @@
 import { useEffect } from 'react';
-import image from './assets/33.jpg';
-import Card from './components/card';
+// import image from './assets/33.jpg';
+// import Card from './components/Card';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { fetchBooksData } from './slices/dataSlice';
+import BookList from './components/BooksList';
+import FavoriteBooks from './components/FavoriteBooks';
 
 function App() {
   const dispatch = useDispatch();
   const books = useSelector((state) => state.data.books, shallowEqual);
+  const favorite = useSelector((state) => state.data.favorite);
 
   useEffect(() => {
     dispatch(fetchBooksData());
   }, [dispatch]);
 
-  console.log(books);
   return (
     <>
       <header className='bg-slate-50'>
@@ -27,23 +29,11 @@ function App() {
         </article>
 
         <article>
-          <div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3'>
-            <Card
-              image={image}
-              title={'Harry Potter'}
-              synopsis={'lorem10'}
-              genre={'idk'}
-              author={'JK Rolling'}
-            />
+          <BookList books={books} />
+        </article>
 
-            <Card
-              image={image}
-              title={'Harry Potter'}
-              synopsis={'lorem10'}
-              genre={'idk'}
-              author={'JK Rolling'}
-            />
-          </div>
+        <article>
+          <FavoriteBooks favorite={favorite} />
         </article>
       </main>
     </>
