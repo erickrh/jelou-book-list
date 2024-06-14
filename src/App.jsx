@@ -1,7 +1,18 @@
+import { useEffect } from 'react';
 import image from './assets/33.jpg';
 import Card from './components/card';
+import { fetchData } from './api';
 
 function App() {
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchData();
+      console.log(data);
+    };
+
+    getData();
+  }, []);
+
   return (
     <>
       <header className='bg-slate-50'>
@@ -17,7 +28,7 @@ function App() {
 
         <article>
           <div className='mt-5 grid grid-cols-3 gap-5'>
-            <div className='flex h-72 w-[26rem] cursor-pointer flex-col items-center rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 md:max-w-xl md:flex-row'>
+            {/* <div className='flex h-72 w-[26rem] cursor-pointer flex-col items-center rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 md:max-w-xl md:flex-row'>
               <img
                 className='h-full w-1/2 rounded-none rounded-s-lg object-cover'
                 src={image}
@@ -34,7 +45,7 @@ function App() {
                 <p className='mb-3 text-sm font-normal text-gray-700'>Horror, Adventure</p>
                 <p className='mb-3 text-sm font-normal text-gray-700'>Author</p>
               </div>
-            </div>
+            </div> */}
 
             <Card
               image={image}
