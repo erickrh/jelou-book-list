@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 import image from './assets/33.jpg';
 import Card from './components/card';
-import { fetchData } from './api';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { fetchBooksData } from './slices/dataSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  const books = useSelector((state) => state.data.books, shallowEqual);
+
   useEffect(() => {
-    const getData = async () => {
-      const data = await fetchData();
-      console.log(data);
-    };
+    dispatch(fetchBooksData());
+  }, [dispatch]);
 
-    getData();
-  }, []);
-
+  console.log(books);
   return (
     <>
       <header className='bg-slate-50'>
