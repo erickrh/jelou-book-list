@@ -4,7 +4,7 @@ import Loading from './Loading';
 export default function BookList({ books, loading }) {
   return (
     <>
-      <h3 className='text-2xl font-bold text-gray-600'>
+      <h3 className='animate-fade text-2xl font-bold text-gray-600 animate-once animate-ease-in-out'>
         Book List <span className='text-secondary text-2xl font-bold'>Recommendation</span>
       </h3>
 

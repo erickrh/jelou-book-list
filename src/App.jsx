@@ -3,7 +3,8 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { fetchBooksData } from './slices/dataSlice';
 import BookList from './components/BooksList';
 import FavoriteBooks from './components/FavoriteBooks';
-import logo from './assets/logo2.png';
+import logo from './assets/logo.png';
+import Footer from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <>
-      <header className='bg-primary flex flex-col items-center shadow-md'>
+      <header className='bg-primary flex animate-fade-down flex-col items-center shadow-md animate-once animate-ease-in-out'>
         <img className='h-20 w-20 rounded-lg' src={logo} alt='logo' />
         <h1 className='text-secondary text-5xl font-medium'>Jelou</h1>
         <h2 className='text-secondary'>Book List</h2>
@@ -31,6 +32,8 @@ function App() {
         <section>
           <FavoriteBooks favorite={favorite} loading={loading} />
         </section>
+
+        <Footer />
       </main>
     </>
   );
