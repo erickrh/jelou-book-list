@@ -1,6 +1,6 @@
 export default function Card({ image, title, synopsis, genre, author }) {
   return (
-    <div className='group flex h-72 w-52 cursor-pointer flex-col items-center rounded-lg bg-white transition-all hover:w-[26rem] hover:border hover:border-gray-200 hover:bg-gray-100 hover:shadow hover:duration-300 hover:ease-in md:max-w-xl md:flex-row'>
+    <div className='group flex h-72 w-52 cursor-pointer flex-col items-center rounded-lg bg-white transition-all hover:z-50 hover:w-[26rem] hover:border hover:border-gray-200 hover:bg-gray-100 hover:shadow hover:duration-300 hover:ease-in md:max-w-xl md:flex-row'>
       <img
         className='h-full w-full rounded-lg object-cover shadow-2xl transition-all duration-500 ease-in-out hover:rounded-s-lg group-hover:w-1/2'
         src={image}
