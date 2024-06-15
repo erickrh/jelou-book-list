@@ -10,7 +10,6 @@ export default function Card({
   pages,
   year,
   ISBN,
-  otherBooks,
   isFavorite,
 }) {
   const dispatch = useDispatch();
@@ -45,10 +44,6 @@ export default function Card({
         <div
           className={`${isFavorite && 'hidden group-hover:flex'} flex h-full w-full animate-fade-right flex-col justify-between leading-normal animate-once animate-ease-in-out`}
         >
-          {/* <h5 className='w-full bg-primary p-2 text-justify text-xl font-bold tracking-tight text-gray-900 shadow-md'>
-            {title}
-          </h5> */}
-
           <h5 className='rounded-md bg-primary p-2 text-justify text-xl font-bold tracking-tight text-gray-900 shadow-md'>
             {title}
           </h5>
@@ -70,16 +65,6 @@ export default function Card({
           >
             ISBN: {ISBN}
           </p>
-          {/* {otherBooks && otherBooks.length > 0 && (
-            <div
-              className={`hidden animate-fade text-xs font-normal text-gray-700 animate-duration-300 animate-once animate-ease-in ${!isFavorite && 'group-hover:block'}`}
-            >
-              <p className='mt-1'>Otros libros:</p>
-              {otherBooks.map((book) => (
-                <p key={book}>{book}</p>
-              ))}
-            </div>
-          )} */}
         </div>
       </div>
     </div>

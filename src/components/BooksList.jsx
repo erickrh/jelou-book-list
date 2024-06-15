@@ -16,7 +16,6 @@ export default function BookList({ books, loading }) {
             synopsis={book.synopsis}
             genre={book.genre}
             author={book.author.name}
-            otherBooks={book.author.otherBooks}
             pages={book.pages}
             year={book.year}
             ISBN={book.ISBN}
