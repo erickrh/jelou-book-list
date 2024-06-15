@@ -1,4 +1,4 @@
-import Card from '../components/Card';
+import Card from './Card';
 
 export default function FavoriteBooks({ favorite, loading }) {
   return (

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { fetchBooksData } from './slices/dataSlice';
 import BookList from './components/BooksList';
-import FavoriteBooks from './hooks/FavoriteBooks';
+import FavoriteBooks from './components/FavoriteBooks';
 import logo from './assets/logo.png';
 import Footer from './components/Footer';
 

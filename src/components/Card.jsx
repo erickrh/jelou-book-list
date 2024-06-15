@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useHandleFavorite from '../lib/useHandleFavorite';
+import useHandleFavorite from '../hooks/useHandleFavorite';
 
 export default function Card({
   cover,
