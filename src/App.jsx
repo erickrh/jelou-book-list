@@ -18,9 +18,9 @@ function App() {
 
   return (
     <>
-      <header className='bg-primary flex animate-fade-down flex-col items-center shadow-md animate-once animate-ease-in-out'>
+      <header className='flex animate-fade-down flex-col items-center bg-primary shadow-md animate-once animate-ease-in-out'>
         <img className='h-20 w-20 rounded-lg' src={logo} alt='logo' />
-        <h1 className='text-secondary text-5xl font-medium'>Jelou</h1>
+        <h1 className='text-5xl font-medium text-secondary'>Jelou</h1>
         <h2 className='text-secondary'>Book List</h2>
       </header>
 
