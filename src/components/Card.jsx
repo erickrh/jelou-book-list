@@ -15,6 +15,8 @@ export default function Card({
 }) {
   const dispatch = useDispatch();
   const favorite = useSelector((state) => state.data.favorite);
+
+  // It is recommended to handle these two as local state to take advantage of the individual approach of marking like and dislike effect in the UI.
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
 
