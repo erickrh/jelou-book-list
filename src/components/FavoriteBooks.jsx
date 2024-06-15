@@ -3,7 +3,7 @@ import Card from './Card';
 export default function FavoriteBooks({ favorite, loading }) {
   return (
     <>
-      <h3 className='mt-5 animate-fade text-2xl font-bold text-gray-600 animate-once animate-ease-in-out'>
+      <h3 className='ml-9 mt-5 animate-fade text-2xl font-bold text-gray-600 animate-once animate-ease-in-out'>
         Favorite List <span className='text-2xl font-bold text-secondary'>Books</span>
       </h3>
 
@@ -21,7 +21,7 @@ export default function FavoriteBooks({ favorite, loading }) {
         ))}
 
         {!favorite.length && !loading && (
-          <p className='text-gray-800'>It&apos;s so empty here...</p>
+          <p className='ml-9 text-gray-800'>It&apos;s so empty here...</p>
         )}
       </div>
     </>
