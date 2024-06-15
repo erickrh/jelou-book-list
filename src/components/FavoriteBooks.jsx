@@ -4,7 +4,7 @@ export default function FavoriteBooks({ favorite, loading }) {
   return (
     <>
       <h3 className='mt-5 animate-fade text-2xl font-bold text-gray-600 animate-once animate-ease-in-out'>
-        Favorite <span className='text-2xl font-bold text-secondary'>Books</span>
+        Libros <span className='text-2xl font-bold text-secondary'>Favoritos</span>
       </h3>
 
       <div className='mt-5 box-border flex flex-row flex-nowrap gap-5 overflow-x-auto overflow-y-hidden'>

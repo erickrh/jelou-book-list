@@ -5,7 +5,7 @@ export default function BookList({ books, loading }) {
   return (
     <>
       <h3 className='animate-fade text-2xl font-bold text-gray-600 animate-once animate-ease-in-out'>
-        Recommended <span className='text-2xl font-bold text-secondary'>Books</span>
+        Libros <span className='text-2xl font-bold text-secondary'>Recomendados</span>
       </h3>
       <div className='mt-5 grid grid-cols-1 gap-y-5 sm:grid-cols-2 md:grid-cols-3'>
         {books.map(({ book }) => (
