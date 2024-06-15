@@ -44,7 +44,7 @@ export default function Card({
         <div
           className={`${isFavorite && 'hidden group-hover:flex'} flex h-full w-full animate-fade-right flex-col justify-between leading-normal animate-once animate-ease-in-out`}
         >
-          <h5 className='rounded-md bg-primary p-2 text-justify text-xl font-bold tracking-tight text-gray-900 shadow-md'>
+          <h5 className='rounded-md bg-primary p-2 text-justify text-xl font-bold tracking-tight text-gray-700 shadow-md'>
             {title}
           </h5>
           <p className='whitespace-normal p-2 text-justify font-normal text-gray-700'>{synopsis}</p>
