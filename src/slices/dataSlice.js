@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchData } from '../api';
+import { fetchData } from '../lib/api';
 import { setLoading } from './uiSlice';
 
 const initialState = {
