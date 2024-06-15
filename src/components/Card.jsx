@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useHandleFavorite from '../hooks/useHandleFavorite';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 export default function Card({
   cover,
@@ -12,7 +12,7 @@ export default function Card({
   ISBN,
   isFavorite,
 }) {
-  const handleFavorite = useHandleFavorite();
+  const handleFavorite = useLocalStorage();
 
   // It is recommended to handle these two as local state to take advantage of the individual approach of marking like and dislike effect in the UI.
   const [like, setLike] = useState(false);
