@@ -20,9 +20,7 @@ export default function FavoriteBooks({ favorite, loading }) {
           />
         ))}
 
-        {!favorite.length && !loading && (
-          <p className='text-gray-800'>It&apos;s so empty here...</p>
-        )}
+        {!favorite.length && !loading && <p className='text-gray-800'>Está tan vacío aquí...</p>}
       </div>
     </>
   );

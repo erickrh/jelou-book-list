@@ -6,6 +6,8 @@ Jelou Book List is a bookstore that is responsible for recommending books to rea
 
 It's simple. To save a favorite book, just click on it. Similarly, to remove it from the reading list, just click on the book.
 
+Take a look here: [https://jelou-book-list.vercel.app/](https://jelou-book-list.vercel.app/)
+
 #### **Screenshots:**
 
 ![](https://imgur.com/0IY3XB2.png)
