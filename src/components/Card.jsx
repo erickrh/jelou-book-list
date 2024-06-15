@@ -43,28 +43,34 @@ export default function Card({
           alt={title}
         />
         <div
-          className={`${isFavorite && 'hidden group-hover:flex'} flex h-full w-full animate-fade-right flex-col justify-between p-2 leading-normal animate-once animate-ease-in-out`}
+          className={`${isFavorite && 'hidden group-hover:flex'} flex h-full w-full animate-fade-right flex-col justify-between leading-normal animate-once animate-ease-in-out`}
         >
-          <h5 className='text-xl font-bold tracking-tight text-gray-900'>{title}</h5>
-          <p className='whitespace-normal font-normal text-gray-700'>{synopsis}</p>
-          <p className='text-sm font-normal text-gray-700'>{genre}</p>
-          <p className='text-sm font-normal text-gray-700'>{author}</p>
+          {/* <h5 className='w-full bg-primary p-2 text-justify text-xl font-bold tracking-tight text-gray-900 shadow-md'>
+            {title}
+          </h5> */}
+
+          <h5 className='rounded-md bg-primary p-2 text-justify text-xl font-bold tracking-tight text-gray-900 shadow-md'>
+            {title}
+          </h5>
+          <p className='whitespace-normal p-2 text-justify font-normal text-gray-700'>{synopsis}</p>
+          <p className='p-2 text-sm font-normal text-gray-700'>{genre}</p>
+          <p className='p-2 text-sm font-normal text-gray-700'>{author}</p>
           <p
-            className={`hidden animate-fade text-xs font-normal text-gray-700 animate-duration-300 animate-once animate-ease-in ${!isFavorite && 'group-hover:flex'}`}
+            className={`hidden animate-fade p-2 text-xs font-normal text-gray-700 animate-duration-300 animate-once animate-ease-in ${!isFavorite && 'group-hover:flex'}`}
           >
             {pages} páginas
           </p>
           <p
-            className={`hidden animate-fade text-xs font-normal text-gray-700 animate-duration-300 animate-once animate-ease-in ${!isFavorite && 'group-hover:flex'} `}
+            className={`hidden animate-fade p-2 text-xs font-normal text-gray-700 animate-duration-300 animate-once animate-ease-in ${!isFavorite && 'group-hover:flex'} `}
           >
             Año {year}
           </p>
           <p
-            className={`hidden animate-fade text-xs font-normal text-gray-700 animate-duration-300 animate-once animate-ease-in ${!isFavorite && 'group-hover:flex'}`}
+            className={`hidden animate-fade p-2 text-xs font-normal text-gray-700 animate-duration-300 animate-once animate-ease-in ${!isFavorite && 'group-hover:flex'}`}
           >
             ISBN: {ISBN}
           </p>
-          {otherBooks && otherBooks.length > 0 && (
+          {/* {otherBooks && otherBooks.length > 0 && (
             <div
               className={`hidden animate-fade text-xs font-normal text-gray-700 animate-duration-300 animate-once animate-ease-in ${!isFavorite && 'group-hover:block'}`}
             >
@@ -73,7 +79,7 @@ export default function Card({
                 <p key={book}>{book}</p>
               ))}
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>
