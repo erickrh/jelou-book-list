@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { fetchBooksData } from './slices/dataSlice';
 import BookList from './components/BooksList';
 import FavoriteBooks from './components/FavoriteBooks';
 import logo from './assets/logo.png';
 import Footer from './components/Footer';
+import ModalTailwind from './components/ModalTailwind';
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+
   const dispatch = useDispatch();
   const books = useSelector((state) => state.data.books, shallowEqual);
   const favorite = useSelector((state) => state.data.favorite);
@@ -23,6 +26,17 @@ function App() {
         <h1 className='text-5xl font-medium text-secondary'>Jelou</h1>
         <h2 className='text-secondary'>Book List</h2>
       </header>
+
+      <button
+        onClick={() => setShowModal(true)}
+        className='fixed bottom-0 left-1/2 z-50 flex h-8 w-32 -translate-x-1/2 transform items-center justify-center rounded bg-secondary px-4 py-2 text-primary hover:bg-gray-700'
+      >
+        Filtrar
+      </button>
+
+      <ModalTailwind showModal={showModal} setShowModal={setShowModal}>
+        <p>This is the modal content</p>
+      </ModalTailwind>
 
       <main className='mx-10 mt-12'>
         <section>
