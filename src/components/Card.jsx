@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFavorite } from '../slices/dataSlice';
+import useHandleFavorite from '../lib/useHandleFavorite';
 
 export default function Card({
   cover,
@@ -13,8 +12,7 @@ export default function Card({
   ISBN,
   isFavorite,
 }) {
-  const dispatch = useDispatch();
-  const favorite = useSelector((state) => state.data.favorite);
+  const handleFavorite = useHandleFavorite();
 
   // It is recommended to handle these two as local state to take advantage of the individual approach of marking like and dislike effect in the UI.
   const [like, setLike] = useState(false);
@@ -22,7 +20,6 @@ export default function Card({
 
   const handleLike = () => {
     setLike(true);
-
     setTimeout(() => {
       setLike(false);
     }, 1000);
@@ -30,29 +27,13 @@ export default function Card({
 
   const handleDislike = () => {
     setDislike(true);
-
     setTimeout(() => {
       setDislike(false);
     }, 1000);
   };
 
-  const handleFavorite = () => {
-    let favoriteBooks = [...favorite];
-    const index = favoriteBooks.findIndex(({ book }) => book.title === title);
-    if (index === -1) {
-      favoriteBooks.unshift({
-        book: { cover, title, synopsis, genre, author },
-      });
-      dispatch(setFavorite(favoriteBooks));
-    } else {
-      if (isFavorite) {
-        setTimeout(() => {
-          favoriteBooks.splice(index, 1);
-          dispatch(setFavorite(favoriteBooks));
-        }, 500);
-      }
-    }
-
+  const handleClick = () => {
+    handleFavorite({ cover, title, synopsis, genre, author, isFavorite });
     if (isFavorite) handleDislike();
     else handleLike();
   };
@@ -63,7 +44,7 @@ export default function Card({
     >
       <div
         className={`${isFavorite ? 'w-48 flex-none hover:w-96' : 'w-96 hover:h-96 hover:w-[26rem]'} group flex h-72 animate-fade-right cursor-pointer flex-col items-center rounded-lg border border-gray-200 bg-white shadow transition-all duration-200 ease-in animate-once animate-ease-in hover:bg-gray-100 md:max-w-xl md:flex-row`}
-        onClick={handleFavorite}
+        onClick={handleClick}
       >
         <img
           className={`${isFavorite ? 'w-48 group-hover:w-1/2' : 'w-1/2'} h-full rounded-lg object-cover shadow-2xl transition-all duration-500 ease-in-out hover:rounded-s-lg`}
