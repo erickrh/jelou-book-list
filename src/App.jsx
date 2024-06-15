@@ -6,14 +6,42 @@ import FavoriteBooks from './components/FavoriteBooks';
 import logo from './assets/logo.png';
 import Footer from './components/Footer';
 import ModalTailwind from './components/ModalTailwind';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
+  useLocalStorage(); // Get favorite books
 
-  const dispatch = useDispatch();
   const books = useSelector((state) => state.data.books, shallowEqual);
+  const dispatch = useDispatch();
   const favorite = useSelector((state) => state.data.favorite);
   const loading = useSelector((state) => state.ui.loading);
+
+  const [showModal, setShowModal] = useState(false);
+  const genres = ['Fantasía', 'Ciencia ficción', 'Zombies', 'Terror'];
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState(books);
+  const handleCheckboxChange = (genre) => {
+    const newSelectedGenres = selectedGenres.includes(genre)
+      ? selectedGenres.filter((g) => g !== genre)
+      : [...selectedGenres, genre];
+    setSelectedGenres(newSelectedGenres);
+    if (newSelectedGenres.length === 0) {
+      setFilteredBooks(books);
+    } else {
+      setFilteredBooks(books.filter((book) => newSelectedGenres.includes(book.book.genre)));
+    }
+  };
+
+  // Update filtered books
+  useEffect(() => {
+    if (books.length > 0) {
+      if (selectedGenres.length === 0) {
+        setFilteredBooks(books);
+      } else {
+        setFilteredBooks(books.filter((book) => selectedGenres.includes(book.book.genre)));
+      }
+    }
+  }, [books, selectedGenres]);
 
   useEffect(() => {
     dispatch(fetchBooksData());
@@ -29,26 +57,40 @@ function App() {
 
       <button
         onClick={() => setShowModal(true)}
-        className='fixed bottom-0 left-1/2 z-50 flex h-8 w-32 -translate-x-1/2 transform items-center justify-center rounded bg-secondary px-4 py-2 text-primary hover:bg-gray-700'
+        className='fixed bottom-1 left-1/2 z-50 flex h-8 w-32 -translate-x-1/2 transform items-center justify-center rounded bg-secondary px-4 py-2 text-primary hover:bg-gray-700'
       >
         Filtrar
       </button>
 
-      <ModalTailwind showModal={showModal} setShowModal={setShowModal}>
-        <p>This is the modal content</p>
+      <ModalTailwind showModal={showModal} setShowModal={setShowModal} title={'Filtrar por género'}>
+        {genres.map((genre) => (
+          <div key={genre}>
+            <input
+              type='checkbox'
+              id={genre}
+              value={genre}
+              onChange={() => handleCheckboxChange(genre)}
+              checked={selectedGenres.includes(genre)}
+              className='cursor-pointer'
+            />
+            <label className='ml-2 cursor-pointer text-gray-800' htmlFor={genre}>
+              {genre}
+            </label>
+          </div>
+        ))}
       </ModalTailwind>
 
       <main className='mx-10 mt-12'>
         <section>
-          <BookList books={books} loading={loading} />
+          <BookList books={filteredBooks} loading={loading} />
         </section>
 
         <section>
           <FavoriteBooks favorite={favorite} loading={loading} />
         </section>
-
-        <Footer />
       </main>
+
+      <Footer />
     </>
   );
 }
