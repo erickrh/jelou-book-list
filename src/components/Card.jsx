@@ -58,7 +58,7 @@ export default function Card({
             {title}
           </h5>
           <p className='whitespace-normal p-2 text-justify font-normal text-gray-700'>{synopsis}</p>
-          <p className='p-2 text-sm font-normal text-gray-700'>{genre}</p>
+          <p className='px-2 text-sm font-normal text-gray-700'>{genre}</p>
           <p className='p-2 text-sm font-normal text-gray-700'>{author}</p>
           <p
             className={`hidden animate-fade p-2 text-xs font-normal text-gray-700 animate-duration-300 animate-once animate-ease-in ${!isFavorite && 'group-hover:flex'}`}
