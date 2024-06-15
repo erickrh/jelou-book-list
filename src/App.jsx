@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { fetchBooksData } from './slices/dataSlice';
 import BookList from './components/BooksList';
 import FavoriteBooks from './components/FavoriteBooks';
 import logo from './assets/logo.png';
 import Footer from './components/Footer';
-import ModalTailwind from './components/ModalTailwind';
+import Modal from './components/Modal';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import { setShowModal, setFilteredBooks, setSelectedGenres } from './slices/uiSlice';
 
 function App() {
   useLocalStorage(); // Get favorite books
@@ -15,32 +16,30 @@ function App() {
   const dispatch = useDispatch();
   const favorite = useSelector((state) => state.data.favorite);
   const loading = useSelector((state) => state.ui.loading);
-
-  const [showModal, setShowModal] = useState(false);
+  const showModal = useSelector((state) => state.ui.showModal);
+  const selectedGenres = useSelector((state) => state.ui.selectedGenres);
+  const filteredBooks = useSelector((state) => state.ui.filteredBooks, shallowEqual);
   const genres = ['Fantasía', 'Ciencia ficción', 'Zombies', 'Terror'];
-  const [selectedGenres, setSelectedGenres] = useState([]);
-  const [filteredBooks, setFilteredBooks] = useState(books);
+
   const handleCheckboxChange = (genre) => {
     const newSelectedGenres = selectedGenres.includes(genre)
       ? selectedGenres.filter((g) => g !== genre)
       : [...selectedGenres, genre];
-    setSelectedGenres(newSelectedGenres);
-    if (newSelectedGenres.length === 0) {
-      setFilteredBooks(books);
-    } else {
-      setFilteredBooks(books.filter((book) => newSelectedGenres.includes(book.book.genre)));
-    }
+    dispatch(setSelectedGenres(newSelectedGenres));
   };
 
   // Update filtered books
   useEffect(() => {
     if (books.length > 0) {
       if (selectedGenres.length === 0) {
-        setFilteredBooks(books);
+        dispatch(setFilteredBooks(books));
       } else {
-        setFilteredBooks(books.filter((book) => selectedGenres.includes(book.book.genre)));
+        dispatch(
+          setFilteredBooks(books.filter((book) => selectedGenres.includes(book.book.genre)))
+        );
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [books, selectedGenres]);
 
   useEffect(() => {
@@ -56,13 +55,13 @@ function App() {
       </header>
 
       <button
-        onClick={() => setShowModal(true)}
+        onClick={() => dispatch(setShowModal(true))}
         className='fixed bottom-1 left-1/2 z-50 flex h-8 w-32 -translate-x-1/2 transform items-center justify-center rounded bg-secondary px-4 py-2 text-primary hover:bg-gray-700'
       >
         Filtrar
       </button>
 
-      <ModalTailwind showModal={showModal} setShowModal={setShowModal} title={'Filtrar por género'}>
+      <Modal showModal={showModal} setShowModal={setShowModal} title={'Filtrar por género'}>
         {genres.map((genre) => (
           <div key={genre}>
             <input
@@ -78,7 +77,7 @@ function App() {
             </label>
           </div>
         ))}
-      </ModalTailwind>
+      </Modal>
 
       <main className='mx-10 mt-12'>
         <section>
