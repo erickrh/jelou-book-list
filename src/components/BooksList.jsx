@@ -19,7 +19,7 @@ export default function BookList({ books, loading }) {
             pages={book.pages}
             year={book.year}
             ISBN={book.ISBN}
-            isFavorite={book.false}
+            isFavorite={false}
           />
         ))}
       </div>

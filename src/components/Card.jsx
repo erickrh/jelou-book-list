@@ -33,7 +33,9 @@ export default function Card({
         book: { cover, title, synopsis, genre, author },
       });
     } else {
-      favoriteBooks.splice(index, 1);
+      if (isFavorite) {
+        favoriteBooks.splice(index, 1);
+      }
     }
     dispatch(setFavorite(favoriteBooks));
 
