@@ -8,21 +8,17 @@ export default {
         secondary: '#DB5300',
       },
       keyframes: {
-        customPing: {
+        fadeOut: {
           '0%': {
-            opacity: '0',
-            width: '100%',
+            opacity: '100%',
           },
-          '50%': {
-            opacity: '1',
-            width: '50%',
+          '100%': {
+            opacity: '0%',
           },
-          '100%': { opacity: '0', width: '100%' },
         },
       },
       animation: {
-        likeAnimation: 'customPing 1s ease-in-out',
-        likeAnimationTwo: 'animate-ping animate-once animate-duration-1000 animate-ease-in',
+        fadeOutAnimation: 'fadeOut 1s ease-in-out',
       },
     },
   },
