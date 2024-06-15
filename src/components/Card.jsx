@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useSelector } from 'react-redux';
 
 export default function Card({
   cover,
@@ -13,6 +14,8 @@ export default function Card({
   isFavorite,
 }) {
   const handleFavorite = useLocalStorage();
+  const favoriteBooks = useSelector((state) => state.data.favorite);
+  const isSaved = favoriteBooks.some((book) => book.book.title === title);
 
   // It is recommended to handle these two as local state to take advantage of the individual approach of marking like and dislike effect in the UI.
   const [like, setLike] = useState(false);
@@ -99,6 +102,21 @@ export default function Card({
             <path d='M14.589 10.479a1.5 1.5 0 0 0 .035 1.599l4.395 6.645-5.995 5.139a1.499 1.499 0 0 0-.31 1.91l4.304 7.173a9.778 9.778 0 0 1-6.035 2.09c-5.45 0-9.868-4.418-9.868-9.868 0-.772.098-1.52.266-2.241C2.752 14.414 12.216 5.432 19 2.966c.026.009.052.023.077.033l-4.488 7.48Z'></path>
             <path d='M27.018 35.034c-2.765 0-5.248-1.151-7.037-2.983l-4.043-6.737 6.039-5.176a1.499 1.499 0 0 0 .274-1.965l-4.603-6.962 4.161-6.935c6.338 3.529 13.621 11.263 14.809 18.649.17.721.267 1.469.267 2.241 0 5.451-4.418 9.868-9.867 9.868'></path>
           </g>
+        </svg>
+
+        {/* Bookmark Icon */}
+        <svg
+          viewBox='0 0 24 24'
+          className={`${(isFavorite || !isSaved) && 'hidden'} absolute bottom-3 right-3 h-6 w-6 animate-pulse animate-once animate-ease-out`}
+        >
+          <path
+            fill='#75afff'
+            d='m18.879,21h0c-.563,0-1.102-.223-1.5-.621l-2.672-2.672c-.391-.391-1.024-.391-1.414,0l-2.672,2.672c-.398.398-.937.621-1.5.621h0c-1.172,0-2.121-.95-2.121-2.121V5c0-1.105.895-2,2-2h10c1.105,0,2,.895,2,2v13.879c0,1.172-.95,2.121-2.121,2.121Z'
+          ></path>
+          <path
+            fill='#112d55'
+            d='m17,2.25H7c-1.517,0-2.75,1.233-2.75,2.75v13.879c0,1.583,1.288,2.871,2.871,2.871.756,0,1.496-.307,2.03-.841l2.672-2.672c.127-.127.227-.127.354,0l2.672,2.672c.534.534,1.274.841,2.03.841,1.583,0,2.871-1.288,2.871-2.871V5c0-1.517-1.233-2.75-2.75-2.75Zm1.25,16.629c0,.756-.615,1.371-1.371,1.371-.361,0-.715-.146-.97-.401l-2.672-2.672c-.33-.331-.77-.513-1.237-.513s-.907.182-1.237.513l-2.672,2.672c-.255.255-.608.401-.97.401-.756,0-1.371-.615-1.371-1.371V5c0-.689.561-1.25,1.25-1.25h10c.689,0,1.25.561,1.25,1.25v13.879Z'
+          ></path>
         </svg>
       </div>
     </div>
