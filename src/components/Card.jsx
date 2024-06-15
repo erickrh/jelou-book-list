@@ -40,7 +40,7 @@ export default function Card({
 
   return (
     <div
-      className={`${!isFavorite && 'relative flex justify-center py-3 transition-all duration-200 hover:-translate-y-6'} ${dislike && 'animate-fadeOutAnimation'}`}
+      className={`${!isFavorite && 'relative py-3 transition-all duration-200 hover:-translate-y-6'} ${dislike && 'animate-fadeOutAnimation'}`}
     >
       <div
         className={`${isFavorite ? 'w-48 flex-none hover:w-96' : 'w-96 hover:h-96 hover:w-[26rem]'} group flex h-72 animate-fade-right cursor-pointer flex-col items-center rounded-lg border border-gray-200 bg-white shadow transition-all duration-200 ease-in animate-once animate-ease-in hover:bg-gray-100 md:max-w-xl md:flex-row`}

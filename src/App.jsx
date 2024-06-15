@@ -24,7 +24,7 @@ function App() {
         <h2 className='text-secondary'>Book List</h2>
       </header>
 
-      <main className='mt-12'>
+      <main className='mx-10 mt-12'>
         <section>
           <BookList books={books} loading={loading} />
         </section>

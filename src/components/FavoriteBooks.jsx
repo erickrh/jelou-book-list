@@ -3,7 +3,7 @@ import Card from './Card';
 export default function FavoriteBooks({ favorite, loading }) {
   return (
     <>
-      <h3 className='ml-9 mt-5 animate-fade text-2xl font-bold text-gray-600 animate-once animate-ease-in-out'>
+      <h3 className='mt-5 animate-fade text-2xl font-bold text-gray-600 animate-once animate-ease-in-out'>
         Favorite List <span className='text-2xl font-bold text-secondary'>Books</span>
       </h3>
 
